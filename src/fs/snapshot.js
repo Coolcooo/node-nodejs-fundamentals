@@ -1,3 +1,6 @@
+import fs from "fs/promises";
+import path from "node:path";
+
 const snapshot = async () => {
   // Write your code here
   // Recursively scan workspace directory
