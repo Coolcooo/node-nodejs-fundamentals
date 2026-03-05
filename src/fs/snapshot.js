@@ -1,14 +1,11 @@
 import fs from "fs/promises";
 import path from "node:path";
+import {throwIsNotExist} from "./utils/throw-error.js";
 
 const snapshot = async () => {
 	const rootPath = path.resolve("../../workspace");
 
-	try {
-		const rootStats = await fs.stat(rootPath);
-	} catch (e) {
-		throw new Error("FS operation failed");
-	}
+	await throwIsNotExist(rootPath);
 
 	const result = {
 		rootPath: rootPath,
