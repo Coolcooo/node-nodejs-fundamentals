@@ -11,7 +11,8 @@ export const throwIsNotExist = async (path) => {
 export const throwIsExist = async (path) => {
 	try {
 		await fs.stat(path);
-		throw new Error("FS operation failed");
 	} catch (e) {
+		return;
 	}
+	throw new Error("FS operation failed");
 };
