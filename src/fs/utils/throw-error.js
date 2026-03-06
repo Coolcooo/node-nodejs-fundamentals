@@ -2,7 +2,7 @@ import fs from "fs/promises";
 
 export const throwIsNotExist = async (path) => {
 	try {
-		await fs.stat(path);
+		await fs.access(path);
 	} catch (e) {
 		throw new Error("FS operation failed");
 	}
@@ -10,7 +10,7 @@ export const throwIsNotExist = async (path) => {
 
 export const throwIsExist = async (path) => {
 	try {
-		await fs.stat(path);
+		await fs.access(path);
 	} catch (e) {
 		return;
 	}
