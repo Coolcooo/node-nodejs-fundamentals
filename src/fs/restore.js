@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import {throwIsExist, throwIsNotExist} from "./utils/throw-error.js";
+import {throwIsExist, throwIsNotExist} from "../utils/throw-error.js";
 
 const restore = async () => {
   const restoreWorkspacePath = path.resolve("../../workspace_restored");

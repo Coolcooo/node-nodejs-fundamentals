@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "node:path";
-import {throwIsNotExist} from "./utils/throw-error.js";
+import {throwIsNotExist} from "../utils/throw-error.js";
 
 const snapshot = async () => {
 	const rootPath = path.resolve("../../workspace");
