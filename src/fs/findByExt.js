@@ -1,7 +1,7 @@
 import process from "process";
 import path from "path";
 import fs from "fs/promises";
-import {getDirname} from "./utils/dirname.js";
+import {getDirname} from "./utils/path.js";
 import {getArgValues} from "./utils/process.js";
 
 const findByExt = async () => {
