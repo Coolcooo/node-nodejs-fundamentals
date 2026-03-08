@@ -28,8 +28,8 @@ const snapshot = async () => {
 
 		result.entries.push(fileInfo);
 	}
-
-	fs.writeFile("../../snapshot.json", JSON.stringify(result));
+	const snapshotPath = path.resolve(import.meta.dirname, "../../snapshot.json");
+	return fs.writeFile(snapshotPath, JSON.stringify(result));
 };
 
 await snapshot();
