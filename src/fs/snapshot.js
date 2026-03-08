@@ -1,9 +1,35 @@
+import fs from "fs/promises";
+import path from "node:path";
+import {throwIsNotExist} from "../utils/throw-error.js";
+
 const snapshot = async () => {
-  // Write your code here
-  // Recursively scan workspace directory
-  // Write snapshot.json with:
-  // - rootPath: absolute path to workspace
-  // - entries: flat array of relative paths and metadata
+	const rootPath = path.resolve(import.meta.dirname, "../../workspace");
+
+	await throwIsNotExist(rootPath);
+
+	const result = {
+		rootPath: rootPath,
+		entries: []
+	};
+
+	const files = await fs.readdir(rootPath, {recursive: true});
+  for (const file of files) {
+		const absolutePath = path.join(rootPath, file);
+		const fileInfo = {path: file};
+		const stats = await fs.stat(absolutePath);
+
+		if (stats.isFile()) {
+			fileInfo.type = "file";
+			fileInfo.size = stats.size;
+			fileInfo.content = await fs.readFile(absolutePath, {encoding: "base64"});
+		} else {
+			fileInfo.type = "directory";
+		}
+
+		result.entries.push(fileInfo);
+	}
+	const snapshotPath = path.resolve(import.meta.dirname, "../../snapshot.json");
+	return fs.writeFile(snapshotPath, JSON.stringify(result));
 };
 
 await snapshot();
