@@ -15,3 +15,13 @@ export const getArgValues = (args, expectedArg) => {
 	}
 	return null;
 }
+
+export const getIntArgValue = (args, expectedArg, defaultValue = null, base = 10) => {
+	const expectedArgs = getArgValues(args, expectedArg);
+	return expectedArgs ? parseInt(expectedArgs[0], base) : defaultValue;
+}
+
+export const getStringArgValue = (args, expectedArg, defaultValue = null) => {
+	const expectedArgs = getArgValues(args, expectedArg);
+	return expectedArgs ? expectedArgs[0] : defaultValue;
+}
