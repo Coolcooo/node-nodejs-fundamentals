@@ -1,4 +1,3 @@
-import {getDirname} from "../utils/path.js";
 import path from "path";
 import fs from "fs/promises";
 import process from "process";
@@ -30,7 +29,7 @@ const filterFiles = (files, pickFiles) => {
 }
 
 const merge = async () => {
-	const dirname = getDirname(import.meta.url);
+	const dirname = import.meta.dirname;
   const partsPath = path.resolve(dirname, "../../workspace/parts");
 	await throwIsNotExist(partsPath);
 	let files = await fs.readdir(partsPath);

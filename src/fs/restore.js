@@ -3,8 +3,8 @@ import path from "path";
 import {throwIsExist, throwIsNotExist} from "../utils/throw-error.js";
 
 const restore = async () => {
-  const restoreWorkspacePath = path.resolve("../../workspace_restored");
-  const snapshotPath = path.resolve("../../snapshot.json");
+  const restoreWorkspacePath = path.resolve(import.meta.dirname, "../../workspace_restored");
+  const snapshotPath = path.resolve(import.meta.dirname, "../../snapshot.json");
 
 	await Promise.all([throwIsExist(restoreWorkspacePath), throwIsNotExist(snapshotPath)]);
 

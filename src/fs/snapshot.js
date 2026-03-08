@@ -3,7 +3,7 @@ import path from "node:path";
 import {throwIsNotExist} from "../utils/throw-error.js";
 
 const snapshot = async () => {
-	const rootPath = path.resolve("../../workspace");
+	const rootPath = path.resolve(import.meta.dirname, "../../workspace");
 
 	await throwIsNotExist(rootPath);
 
